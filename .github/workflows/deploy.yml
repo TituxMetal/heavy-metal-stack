@@ -112,10 +112,15 @@ jobs:
       - name: 🌳 Cypress run
         uses: cypress-io/github-action@v5
         with:
+          build: npm run build
           start: npm run start:mocks
           wait-on: 'http://localhost:8811'
+          record: true
+          parallel: true
+          group: GH Action parallel
         env:
           PORT: '8811'
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
 
   build:
     name: 🐳 Build
