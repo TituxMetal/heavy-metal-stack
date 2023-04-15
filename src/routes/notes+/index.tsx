@@ -1,6 +1,6 @@
 import { Link } from '@remix-run/react'
 
-export default function NoteIndexPage() {
+const NoteIndexPage = () => {
   return (
     <p>
       No note selected. Select a note on the left, or{' '}
@@ -10,3 +10,5 @@ export default function NoteIndexPage() {
     </p>
   )
 }
+
+export default NoteIndexPage

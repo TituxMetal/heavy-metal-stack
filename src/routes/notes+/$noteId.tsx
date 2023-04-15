@@ -8,10 +8,10 @@ import {
 } from '@remix-run/react'
 import invariant from 'tiny-invariant'
 
-import { deleteNote, getNote } from '~/models/note.server'
-import { requireUserId } from '~/session.server'
+import { deleteNote, getNote } from '~/models'
+import { requireUserId } from '~/services'
 
-export async function loader({ request, params }: LoaderArgs) {
+export const loader = async ({ request, params }: LoaderArgs) => {
   const userId = await requireUserId(request)
   invariant(params.noteId, 'noteId not found')
 
@@ -22,7 +22,7 @@ export async function loader({ request, params }: LoaderArgs) {
   return json({ note })
 }
 
-export async function action({ request, params }: ActionArgs) {
+export const action = async ({ request, params }: ActionArgs) => {
   const userId = await requireUserId(request)
   invariant(params.noteId, 'noteId not found')
 
@@ -31,7 +31,7 @@ export async function action({ request, params }: ActionArgs) {
   return redirect('/notes')
 }
 
-export default function NoteDetailsPage() {
+const NoteDetailsPage = () => {
   const data = useLoaderData<typeof loader>()
 
   return (
@@ -51,7 +51,7 @@ export default function NoteDetailsPage() {
   )
 }
 
-export function ErrorBoundary() {
+export const ErrorBoundary = () => {
   const error = useRouteError()
 
   if (error instanceof Error) {
@@ -68,3 +68,5 @@ export function ErrorBoundary() {
 
   return <div>An unexpected error occurred: {error.statusText}</div>
 }
+
+export default NoteDetailsPage
