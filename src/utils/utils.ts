@@ -1,7 +1,7 @@
 import { useMatches } from '@remix-run/react'
 import { useMemo } from 'react'
 
-import type { User } from '~/models/user.server'
+import type { User } from '~/models'
 
 const DEFAULT_REDIRECT = '/'
 
@@ -12,10 +12,10 @@ const DEFAULT_REDIRECT = '/'
  * @param {string} to The redirect destination
  * @param {string} defaultRedirect The redirect to use if the to is unsafe.
  */
-export function safeRedirect(
+export const safeRedirect = (
   to: FormDataEntryValue | string | null | undefined,
   defaultRedirect: string = DEFAULT_REDIRECT
-) {
+) => {
   if (!to || typeof to !== 'string') {
     return defaultRedirect
   }
@@ -33,9 +33,9 @@ export function safeRedirect(
  * @param {string} id The route id
  * @returns {JSON|undefined} The router data or undefined if not found
  */
-export function useMatchesData(
+export const useMatchesData = (
   id: string
-): Record<string, unknown> | undefined {
+): Record<string, unknown> | undefined => {
   const matchingRoutes = useMatches()
   const route = useMemo(
     () => matchingRoutes.find(route => route.id === id),
@@ -44,11 +44,11 @@ export function useMatchesData(
   return route?.data
 }
 
-function isUser(user: any): user is User {
+const isUser = (user: any): user is User => {
   return user && typeof user === 'object' && typeof user.email === 'string'
 }
 
-export function useOptionalUser(): User | undefined {
+export const useOptionalUser = (): User | undefined => {
   const data = useMatchesData('root')
   if (!data || !isUser(data.user)) {
     return undefined
@@ -56,7 +56,7 @@ export function useOptionalUser(): User | undefined {
   return data.user
 }
 
-export function useUser(): User {
+export const useUser = (): User => {
   const maybeUser = useOptionalUser()
   if (!maybeUser) {
     throw new Error(
@@ -66,6 +66,6 @@ export function useUser(): User {
   return maybeUser
 }
 
-export function validateEmail(email: unknown): email is string {
+export const validateEmail = (email: unknown): email is string => {
   return typeof email === 'string' && email.length > 3 && email.includes('@')
 }
