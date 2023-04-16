@@ -77,6 +77,9 @@ jobs:
         with:
           useLockFile: false
 
+      - name: 🏄 Copy test env vars
+        run: cp .env.example .env
+
       - name: ⚡ Run vitest
         run: npm run test -- --coverage
 
@@ -90,6 +93,8 @@ jobs:
           node-version: 16
       - name: Install dependencies
         run: yarn
+      - name: 🏄 Copy test env vars
+        run: cp .env.example .env
       - name: Install Playwright Browsers
         run: yarn playwright install --with-deps
       - name: 🛠 Setup Database
