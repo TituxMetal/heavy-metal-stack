@@ -93,7 +93,7 @@ jobs:
       - name: Install Playwright Browsers
         run: yarn playwright install --with-deps
       - name: 🛠 Setup Database
-        run: yarn prisma migrate reset --force
+        run: npx prisma migrate reset --force
       - name: 🏗 Build
         run: yarn run build
       - name: 🎭 Playwright tests
