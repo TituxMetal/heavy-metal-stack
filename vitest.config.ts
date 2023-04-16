@@ -8,6 +8,7 @@ import { defineConfig } from 'vitest/config'
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
   test: {
+    include: ['./src/**/*.test.{ts,tsx}'],
     globals: true,
     environment: 'happy-dom',
     setupFiles: ['./test/setup-test-env.ts']
