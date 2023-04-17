@@ -1,6 +1,6 @@
 import type { User, Note } from '@prisma/client'
 
-import { prisma } from '~/utils'
+import { prisma } from '~/lib'
 
 export type { Note } from '@prisma/client'
 
