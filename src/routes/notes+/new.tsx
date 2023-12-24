@@ -1,4 +1,4 @@
-import type { ActionArgs } from '@remix-run/node'
+import type { ActionFunctionArgs } from '@remix-run/node'
 import { json, redirect } from '@remix-run/node'
 import { Form, useActionData } from '@remix-run/react'
 import * as React from 'react'
@@ -6,7 +6,7 @@ import * as React from 'react'
 import { createNote } from '~/models'
 import { requireUserId } from '~/services'
 
-export const action = async ({ request }: ActionArgs) => {
+export const action = async ({ request }: ActionFunctionArgs) => {
   const userId = await requireUserId(request)
 
   const formData = await request.formData()
@@ -37,12 +37,19 @@ const NewNotePage = () => {
   const titleRef = React.useRef<HTMLInputElement>(null)
   const bodyRef = React.useRef<HTMLTextAreaElement>(null)
 
+  /**
+   * React hook that focuses the first input with a validation error
+   * on render. This provides a better UX by focusing the invalid
+   * input so the user can correct the error.
+   */
   React.useEffect(() => {
-    if (actionData?.errors?.title) {
-      titleRef.current?.focus()
-    } else if (actionData?.errors?.body) {
-      bodyRef.current?.focus()
-    }
+    const focusElement = actionData?.errors?.title
+      ? titleRef.current
+      : actionData?.errors?.body
+        ? bodyRef.current
+        : null
+
+    focusElement?.focus()
   }, [actionData])
 
   return (

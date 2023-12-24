@@ -1,4 +1,4 @@
-import type { ActionArgs, LoaderArgs } from '@remix-run/node'
+import type { ActionFunctionArgs, LoaderFunctionArgs } from '@remix-run/node'
 import { json, redirect } from '@remix-run/node'
 import {
   Form,
@@ -11,7 +11,7 @@ import invariant from 'tiny-invariant'
 import { deleteNote, getNote } from '~/models'
 import { requireUserId } from '~/services'
 
-export const loader = async ({ request, params }: LoaderArgs) => {
+export const loader = async ({ request, params }: LoaderFunctionArgs) => {
   const userId = await requireUserId(request)
   invariant(params.noteId, 'noteId not found')
 
@@ -22,7 +22,7 @@ export const loader = async ({ request, params }: LoaderArgs) => {
   return json({ note })
 }
 
-export const action = async ({ request, params }: ActionArgs) => {
+export const action = async ({ request, params }: ActionFunctionArgs) => {
   const userId = await requireUserId(request)
   invariant(params.noteId, 'noteId not found')
 
