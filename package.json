@@ -1,6 +1,10 @@
 {
+  "author": "Titux Metal (DEV) <github@lgdweb.fr>",
+  "license": "MIT",
   "name": "20230412-heavy-metal-stack-7f0f",
+  "repository": "git@github.com:TituxMetal/heavy-metal-stack.git",
   "private": true,
+  "version": "1.0.0",
   "sideEffects": false,
   "scripts": {
     "build": "remix build",
