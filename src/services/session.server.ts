@@ -1,8 +1,7 @@
 import { createCookieSessionStorage, redirect } from '@remix-run/node'
 import invariant from 'tiny-invariant'
 
-import { getUserById } from '~/models'
-import type { User } from '~/models'
+import { getUserById, type User } from '~/models'
 
 invariant(process.env.SESSION_SECRET, 'SESSION_SECRET must be set')
 
