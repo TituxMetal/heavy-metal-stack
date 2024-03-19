@@ -3897,9 +3897,9 @@ gunzip-maybe@^1.4.2:
     through2 "^2.0.3"
 
 happy-dom@^13.0.0:
-  version "13.9.0"
-  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-13.9.0.tgz#ec6cf212e2eaaf4ab2931050fcb58334b76730bd"
-  integrity sha512-hMzsFn2x+B61TF7wsJ3La/exaxW9AWZePlNGzAkMvoVYXI3pMqPSGTT1qXTwcsVLB+44TM8KjHuoQLLx4EX9Vg==
+  version "13.10.1"
+  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-13.10.1.tgz#bfaf147704055e7c2feb4069adc899a838588307"
+  integrity sha512-9GZLEFvQL5EgfJX2zcBgu1nsPUn98JF/EiJnSfQbdxI6YEQGqpd09lXXxOmYonRBIEFz9JlGCOiPflDzgS1p8w==
   dependencies:
     entities "^4.5.0"
     webidl-conversions "^7.0.0"
